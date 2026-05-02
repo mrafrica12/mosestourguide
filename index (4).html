@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moses Tours & Travel — Luxury Safari & Travel Experiences in Kenya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #E8D8B7;
+    --sand-light: #F5EFE0;
+    --sand-dark: #C9B89A;
+    --terra: #C65D2E;
+    --terra-dark: #A34920;
+    --green: #1F3D2B;
+    --green-mid: #2C5A3E;
+    --green-light: #3A7A52;
+    --gold: #D4A437;
+    --gold-light: #E8C060;
+    --charcoal: #1A1A1A;
+    --white: #FAFAF7;
+    --muted: #6B6B5E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 20px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: transparent;
+    transition: background 0.4s, padding 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(31,61,43,0.97);
+    padding: 14px 48px;
+    backdrop-filter: blur(8px);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+  .logo-mark {
+    width: 42px; height: 42px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .logo-mark svg { width: 24px; height: 24px; }
+  .logo-text { display: flex; flex-direction: column; line-height: 1; }
+  .logo-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 600;
+    color: var(--white); letter-spacing: 0.04em;
+  }
+  .logo-tagline {
+    font-size: 9px; font-weight: 300;
+    color: var(--gold); letter-spacing: 0.18em;
+    text-transform: uppercase; margin-top: 2px;
+  }
+  nav ul {
+    display: flex; gap: 36px; list-style: none;
+  }
+  nav ul a {
+    font-size: 13px; font-weight: 400;
+    color: rgba(250,250,247,0.8);
+    text-decoration: none; letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  nav ul a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--charcoal) !important;
+    padding: 10px 22px;
+    border-radius: 2px;
+    font-weight: 500 !important;
+    letter-spacing: 0.08em !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--charcoal) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    height: 100vh; min-height: 680px;
+    position: relative;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to right, rgba(31,61,43,0.82) 0%, rgba(31,61,43,0.35) 60%, rgba(31,61,43,0.1) 100%),
+      url('https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1800&q=85') center/cover no-repeat;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 48px;
+    max-width: 680px;
+  }
+  .hero-eyebrow {
+    font-size: 11px; font-weight: 400;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 32px; height: 1px;
+    background: var(--gold);
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 6vw, 84px);
+    font-weight: 300; line-height: 1.06;
+    color: var(--white);
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--gold);
+  }
+  .hero-sub {
+    font-size: 16px; font-weight: 300;
+    color: rgba(250,250,247,0.78);
+    line-height: 1.7; margin-bottom: 44px;
+    max-width: 480px;
+  }
+  .hero-actions {
+    display: flex; gap: 16px; flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--gold);
+    color: var(--charcoal);
+    padding: 16px 32px;
+    font-size: 13px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 10px;
+    border: 1px solid rgba(250,250,247,0.5);
+    color: var(--white);
+    padding: 16px 32px;
+    font-size: 13px; font-weight: 400;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+  .wa-icon { width: 18px; height: 18px; flex-shrink: 0; }
+  .hero-scroll {
+    position: absolute; bottom: 36px; left: 48px;
+    display: flex; align-items: center; gap: 12px;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(250,250,247,0.5);
+  }
+  .scroll-line {
+    width: 1px; height: 48px;
+    background: linear-gradient(to bottom, transparent, rgba(250,250,247,0.4));
+  }
+
+  /* ── TRUST BAR ── */
+  .trust-bar {
+    background: var(--green);
+    padding: 28px 48px;
+    display: flex; align-items: center; justify-content: center;
+    gap: 0;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 0 48px;
+    border-right: 1px solid rgba(255,255,255,0.12);
+  }
+  .trust-item:last-child { border-right: none; }
+  .trust-icon { color: var(--gold); font-size: 18px; }
+  .trust-label {
+    font-size: 12px; font-weight: 400;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(250,250,247,0.72);
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 100px 48px; }
+  .section-eyebrow {
+    font-size: 11px; font-weight: 400;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--terra);
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 16px;
+  }
+  .section-eyebrow::before {
+    content: ''; display: block;
+    width: 24px; height: 1px;
+    background: var(--terra);
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 300; line-height: 1.1;
+    color: var(--charcoal);
+    letter-spacing: -0.01em;
+  }
+  .section-title em { font-style: italic; color: var(--green); }
+  .section-sub {
+    font-size: 15px; font-weight: 300; color: var(--muted);
+    line-height: 1.75; max-width: 540px;
+    margin-top: 16px;
+  }
+
+  /* ── SERVICES ── */
+  .services { background: var(--sand-light); }
+  .services-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 64px; flex-wrap: wrap; gap: 24px;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2px;
+  }
+  .service-card {
+    background: var(--white);
+    padding: 44px 36px;
+    position: relative; overflow: hidden;
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .service-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--gold);
+    transition: width 0.4s ease;
+  }
+  .service-card:hover::after { width: 100%; }
+  .service-card:hover { background: var(--green); }
+  .service-card:hover .service-name { color: var(--white); }
+  .service-card:hover .service-desc { color: rgba(250,250,247,0.6); }
+  .service-card:hover .service-icon { color: var(--gold); }
+  .service-icon {
+    font-size: 28px; color: var(--green);
+    margin-bottom: 20px;
+    display: block;
+    transition: color 0.3s;
+  }
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 500;
+    color: var(--charcoal); margin-bottom: 10px;
+    transition: color 0.3s;
+  }
+  .service-desc {
+    font-size: 13px; font-weight: 300; color: var(--muted);
+    line-height: 1.65;
+    transition: color 0.3s;
+  }
+
+  /* ── DESTINATIONS ── */
+  .destinations-header { margin-bottom: 56px; }
+  .destinations-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 340px 260px;
+    gap: 3px;
+  }
+  .dest-card {
+    position: relative; overflow: hidden;
+    cursor: pointer;
+  }
+  .dest-card:first-child {
+    grid-column: 1; grid-row: 1 / 3;
+  }
+  .dest-bg {
+    position: absolute; inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s ease;
+  }
+  .dest-card:hover .dest-bg { transform: scale(1.05); }
+  .dest-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(31,61,43,0.85) 0%, rgba(31,61,43,0.1) 60%);
+  }
+  .dest-info {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 28px 28px;
+  }
+  .dest-tag {
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 6px;
+  }
+  .dest-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 400;
+    color: var(--white); line-height: 1.1;
+  }
+  .dest-card:first-child .dest-name { font-size: 36px; }
+
+  /* ── FLEET ── */
+  .fleet { background: var(--green); padding: 100px 48px; }
+  .fleet .section-eyebrow { color: var(--gold); }
+  .fleet .section-eyebrow::before { background: var(--gold); }
+  .fleet .section-title { color: var(--white); }
+  .fleet .section-sub { color: rgba(250,250,247,0.6); }
+  .fleet-header { margin-bottom: 64px; }
+  .fleet-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .fleet-card {
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 36px 28px;
+    position: relative;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .fleet-card:hover {
+    border-color: var(--gold);
+    background: rgba(212,164,55,0.06);
+  }
+  .fleet-badge {
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 16px;
+    display: block;
+  }
+  .fleet-vehicle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 400;
+    color: var(--white); margin-bottom: 10px;
+  }
+  .fleet-desc {
+    font-size: 13px; font-weight: 300;
+    color: rgba(250,250,247,0.55);
+    line-height: 1.7;
+  }
+  .fleet-img {
+    width: 100%; height: 160px;
+    object-fit: cover;
+    margin-bottom: 24px;
+    filter: brightness(0.85);
+  }
+
+  /* ── WHY ── */
+  .why { background: var(--sand-light); }
+  .why-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+    margin-top: 80px;
+  }
+  .why-image {
+    position: relative; height: 560px;
+    overflow: hidden;
+  }
+  .why-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .why-img-accent {
+    position: absolute;
+    bottom: -24px; right: -24px;
+    width: 200px; height: 200px;
+    background: var(--gold);
+    z-index: -1;
+  }
+  .why-points { display: flex; flex-direction: column; gap: 36px; }
+  .why-point {
+    display: flex; gap: 24px; align-items: flex-start;
+    padding-bottom: 36px;
+    border-bottom: 1px solid rgba(31,61,43,0.1);
+  }
+  .why-point:last-child { border-bottom: none; padding-bottom: 0; }
+  .why-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px; font-weight: 300;
+    color: rgba(31,61,43,0.15); line-height: 1;
+    flex-shrink: 0; width: 52px;
+    margin-top: -8px;
+  }
+  .why-point-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 500;
+    color: var(--charcoal); margin-bottom: 8px;
+  }
+  .why-point-desc {
+    font-size: 14px; font-weight: 300;
+    color: var(--muted); line-height: 1.7;
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--charcoal);
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: 560px;
+  }
+  .contact-info {
+    padding: 100px 64px;
+    background: var(--green);
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .contact-info .section-eyebrow { color: var(--gold); }
+  .contact-info .section-eyebrow::before { background: var(--gold); }
+  .contact-info .section-title { color: var(--white); margin-bottom: 40px; }
+  .contact-detail {
+    display: flex; align-items: flex-start; gap: 16px;
+    margin-bottom: 28px;
+  }
+  .contact-icon {
+    width: 40px; height: 40px;
+    border: 1px solid rgba(212,164,55,0.4);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; color: var(--gold); font-size: 16px;
+  }
+  .contact-label {
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(250,250,247,0.4); margin-bottom: 4px;
+  }
+  .contact-value {
+    font-size: 16px; font-weight: 400;
+    color: var(--white);
+  }
+  .contact-form {
+    padding: 100px 64px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .form-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px; font-weight: 300;
+    color: var(--white); margin-bottom: 36px;
+  }
+  .form-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px; margin-bottom: 16px;
+  }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label {
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(250,250,247,0.4);
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--white);
+    padding: 14px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 300;
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(255,255,255,0.25); }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--gold); }
+  .form-group select option { background: var(--charcoal); }
+  .form-full { grid-column: 1 / -1; }
+  .form-group textarea { resize: none; min-height: 100px; }
+  .btn-submit {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--gold);
+    color: var(--charcoal);
+    padding: 16px 36px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border: none; border-radius: 2px; cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.2s;
+    width: fit-content;
+  }
+  .btn-submit:hover { background: var(--gold-light); }
+
+  /* ── WA STICKY ── */
+  .wa-sticky {
+    position: fixed; bottom: 28px; right: 28px;
+    z-index: 200;
+    display: flex; flex-direction: column; align-items: flex-end;
+    gap: 10px;
+  }
+  .wa-bubble {
+    background: var(--white);
+    color: var(--charcoal);
+    padding: 10px 16px;
+    border-radius: 20px 20px 4px 20px;
+    font-size: 13px; font-weight: 400;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+    max-width: 200px; text-align: right;
+    opacity: 0;
+    transform: translateY(8px);
+    animation: fadeUp 0.5s 1.5s forwards;
+  }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .wa-btn {
+    width: 58px; height: 58px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .wa-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 28px rgba(37,211,102,0.55);
+  }
+  .wa-btn svg { width: 30px; height: 30px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--charcoal);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 40px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-copy {
+    font-size: 12px; font-weight: 300;
+    color: rgba(250,250,247,0.3);
+  }
+  .footer-links {
+    display: flex; gap: 28px; list-style: none;
+  }
+  .footer-links a {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(250,250,247,0.3);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 18px 24px; }
+    nav.scrolled { padding: 12px 24px; }
+    nav ul { display: none; }
+    section { padding: 72px 24px; }
+    .hero-content { padding: 0 24px; }
+    .hero-scroll { left: 24px; }
+    .trust-bar { flex-direction: column; gap: 16px; padding: 32px 24px; }
+    .trust-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 16px 0; width: 100%; }
+    .trust-item:last-child { border-bottom: none; }
+    .destinations-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 260px 260px 200px; }
+    .dest-card:first-child { grid-column: 1 / 3; grid-row: 1; }
+    .fleet-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; gap: 48px; }
+    .why-image { height: 360px; }
+    .contact { grid-template-columns: 1fr; }
+    .contact-info, .contact-form { padding: 64px 24px; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-logo" href="#">
+    <div class="logo-mark">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C12 2 7 6 7 11a5 5 0 0010 0c0-5-5-9-5-9z" fill="#1F3D2B"/>
+        <path d="M12 11v9M9 17l3 3 3-3" stroke="#1F3D2B" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M4 20h16" stroke="#1F3D2B" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <span class="logo-name">Moses Tours</span>
+      <span class="logo-tagline">Kenya Safari & Travel</span>
+    </div>
+  </a>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#fleet">Fleet</a></li>
+    <li><a href="#contact" class="nav-cta">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Kenya's Finest Travel Partner</p>
+    <h1>Explore Kenya<br>in <em>Comfort</em><br>& Style</h1>
+    <p class="hero-sub">Private safaris, luxury transfers, and curated excursions — crafted for travelers who expect nothing but the best.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Book Your Safari →</a>
+      <a href="https://wa.me/254716782031?text=Hello%2C%20I%27d%20like%20to%20book%20a%20safari%20experience." class="btn-outline" target="_blank">
+        <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.137.565 4.147 1.558 5.889L.053 23.394l5.697-1.493A11.937 11.937 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.804 9.804 0 01-5.012-1.374l-.36-.213-3.381.887.902-3.293-.233-.379A9.775 9.775 0 012.182 12c0-5.419 4.4-9.818 9.818-9.818 5.419 0 9.818 4.399 9.818 9.818 0 5.419-4.399 9.818-9.818 9.818z"/></svg>
+        Chat on WhatsApp
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll to explore
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <span class="trust-icon">✦</span>
+    <span class="trust-label">Reliable</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-icon">✦</span>
+    <span class="trust-label">Comfortable</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-icon">✦</span>
+    <span class="trust-label">Professional</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-icon">✦</span>
+    <span class="trust-label">Locally Trusted</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div>
+      <p class="section-eyebrow">What We Offer</p>
+      <h2 class="section-title">Curated <em>Services</em><br>for Every Journey</h2>
+    </div>
+    <p class="section-sub">From the moment you land to the moment you leave, every detail is handled with care and precision.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-icon">✈</span>
+      <h3 class="service-name">Airport & SGR Transfers</h3>
+      <p class="service-desc">Seamless, punctual transfers from Mombasa Airport and the SGR station. Meet & greet with a professional driver.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🌿</span>
+      <h3 class="service-name">Safaris & Tours</h3>
+      <p class="service-desc">Expert-guided game drives and multi-day safari packages through Kenya's most breathtaking wildlife reserves.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🌊</span>
+      <h3 class="service-name">Malindi & Watamu</h3>
+      <p class="service-desc">Private excursions to Kenya's stunning coastline — marine parks, snorkelling, and hidden beach experiences.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🚗</span>
+      <h3 class="service-name">Car Hire & Chauffeur</h3>
+      <p class="service-desc">Premium vehicles with professional chauffeurs available for full-day, multi-day, or hourly hire across the region.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🏡</span>
+      <h3 class="service-name">Villa & Airbnb Booking</h3>
+      <p class="service-desc">Curated selection of coastal villas and private apartments — from boutique hideaways to spacious family estates.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section id="destinations" style="padding: 100px 0; background: var(--white);">
+  <div style="padding: 0 48px;" class="destinations-header">
+    <p class="section-eyebrow">Where We Take You</p>
+    <h2 class="section-title">Iconic <em>Destinations</em></h2>
+    <p class="section-sub">Kenya's most extraordinary landscapes and cultural treasures, expertly navigated.</p>
+  </div>
+  <div style="padding: 40px 48px 0; padding-bottom: 0;" class="destinations-grid">
+    <div class="dest-card">
+      <div class="dest-bg" style="background-image: url('https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=900&q=80');"></div>
+      <div class="dest-overlay"></div>
+      <div class="dest-info">
+        <p class="dest-tag">Marine Reserve</p>
+        <h3 class="dest-name">Watamu<br>Marine Park</h3>
+      </div>
+    </div>
+    <div class="dest-card">
+      <div class="dest-bg" style="background-image: url('https://images.unsplash.com/photo-1535941339077-2dd1c7963098?w=700&q=80');"></div>
+      <div class="dest-overlay"></div>
+      <div class="dest-info">
+        <p class="dest-tag">UNESCO Heritage</p>
+        <h3 class="dest-name">Gede Ruins</h3>
+      </div>
+    </div>
+    <div class="dest-card">
+      <div class="dest-bg" style="background-image: url('https://images.unsplash.com/photo-1504432842672-1a79f78e4084?w=700&q=80');"></div>
+      <div class="dest-overlay"></div>
+      <div class="dest-info">
+        <p class="dest-tag">National Forest</p>
+        <h3 class="dest-name">Arabuko Sokoke</h3>
+      </div>
+    </div>
+    <div class="dest-card">
+      <div class="dest-bg" style="background-image: url('https://images.unsplash.com/photo-1566438480900-0609be27a4be?w=700&q=80');"></div>
+      <div class="dest-overlay"></div>
+      <div class="dest-info">
+        <p class="dest-tag">Geological Wonder</p>
+        <h3 class="dest-name">Hell's Kitchen</h3>
+      </div>
+    </div>
+    <div class="dest-card">
+      <div class="dest-bg" style="background-image: url('https://images.unsplash.com/photo-1559827291-72ee739d0d9a?w=700&q=80');"></div>
+      <div class="dest-overlay"></div>
+      <div class="dest-info">
+        <p class="dest-tag">Marine Reserve</p>
+        <h3 class="dest-name">Malindi Marine Park</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLEET -->
+<section class="fleet" id="fleet">
+  <div class="fleet-header">
+    <p class="section-eyebrow">Our Fleet</p>
+    <h2 class="section-title" style="color: var(--white);">Premium Vehicles,<br><em style="color: var(--gold);">Immaculate Standards</em></h2>
+    <p class="section-sub">Every vehicle maintained to the highest standards — air-conditioned, comfortable, and driven by trained professionals.</p>
+  </div>
+  <div class="fleet-grid">
+    <div class="fleet-card">
+      <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&q=80" alt="Land Cruiser" class="fleet-img">
+      <span class="fleet-badge">Premium Safari</span>
+      <h3 class="fleet-vehicle">Toyota Land Cruiser</h3>
+      <p class="fleet-desc">The definitive safari vehicle — spacious, powerful, and built for Kenya's diverse terrain.</p>
+    </div>
+    <div class="fleet-card">
+      <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80" alt="Safari Van" class="fleet-img">
+      <span class="fleet-badge">Group Transfers</span>
+      <h3 class="fleet-vehicle">Safari Minivan</h3>
+      <p class="fleet-desc">Ideal for groups and family safaris — pop-up roofs for wildlife viewing, full air conditioning.</p>
+    </div>
+    <div class="fleet-card">
+      <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&q=80" alt="Private Transfer" class="fleet-img">
+      <span class="fleet-badge">Executive Transfer</span>
+      <h3 class="fleet-vehicle">Private Sedan</h3>
+      <p class="fleet-desc">Airport transfers and business travel in clean, comfortable sedans with professional chauffeurs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why">
+  <p class="section-eyebrow">Why Moses Tours</p>
+  <h2 class="section-title">Trusted by Travelers<br>from <em>Around the World</em></h2>
+  <div class="why-grid">
+    <div class="why-image">
+      <img src="https://images.unsplash.com/photo-1682686581498-5e85c7228119?w=800&q=85" alt="Safari experience" class="why-img">
+      <div class="why-img-accent"></div>
+    </div>
+    <div class="why-points">
+      <div class="why-point">
+        <span class="why-num">01</span>
+        <div>
+          <h3 class="why-point-title">Deep Local Knowledge</h3>
+          <p class="why-point-desc">Born and raised in coastal Kenya, our team knows every hidden trail, the best wildlife timings, and the authentic local experiences that guide books miss.</p>
+        </div>
+      </div>
+      <div class="why-point">
+        <span class="why-num">02</span>
+        <div>
+          <h3 class="why-point-title">Truly Personalized</h3>
+          <p class="why-point-desc">No two itineraries are the same. We design every trip around your interests, pace, and budget — from solo adventurers to large family groups.</p>
+        </div>
+      </div>
+      <div class="why-point">
+        <span class="why-num">03</span>
+        <div>
+          <h3 class="why-point-title">Safe & Reliable</h3>
+          <p class="why-point-desc">All vehicles are regularly serviced, drivers fully licensed, and we maintain 24/7 WhatsApp support throughout your journey in Kenya.</p>
+        </div>
+      </div>
+      <div class="why-point">
+        <span class="why-num">04</span>
+        <div>
+          <h3 class="why-point-title">Transparent Pricing</h3>
+          <p class="why-point-desc">No hidden fees, no surprises. Every quote includes a full itemized breakdown so you travel with complete confidence.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact" id="contact">
+  <div class="contact-info">
+    <p class="section-eyebrow">Get in Touch</p>
+    <h2 class="section-title">Ready to Start<br>Your <em style="color: var(--gold);">Adventure?</em></h2>
+    <div style="margin-top: 12px;">
+      <div class="contact-detail">
+        <div class="contact-icon">📱</div>
+        <div>
+          <p class="contact-label">WhatsApp & Phone</p>
+          <p class="contact-value">+254 716 782031</p>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">✉</div>
+        <div>
+          <p class="contact-label">Email</p>
+          <p class="contact-value">moseswambua121@gmail.com</p>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">📍</div>
+        <div>
+          <p class="contact-label">Based in</p>
+          <p class="contact-value">Malindi & Watamu, Kenya</p>
+        </div>
+      </div>
+    </div>
+    <a href="https://wa.me/254716782031?text=Hello%2C%20I'd%20like%20to%20plan%20a%20trip%20with%20Moses%20Tours." class="btn-primary" style="margin-top: 32px;" target="_blank">
+      Book in Seconds via WhatsApp →
+    </a>
+  </div>
+  <div class="contact-form">
+    <h3 class="form-title">Send an Enquiry</h3>
+    <form onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="Jane Smith" required>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="jane@email.com" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Service Interested In</label>
+          <select>
+            <option>Safari & Game Drive</option>
+            <option>Airport Transfer</option>
+            <option>Malindi / Watamu Excursion</option>
+            <option>Car Hire & Chauffeur</option>
+            <option>Villa Booking</option>
+            <option>Custom Itinerary</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Travel Date</label>
+          <input type="date">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group form-full">
+          <label>Your Message</label>
+          <textarea placeholder="Tell us about your trip — group size, preferences, any special requests..."></textarea>
+        </div>
+      </div>
+      <button type="submit" class="btn-submit">Send Enquiry →</button>
+      <p id="form-success" style="display:none; color: var(--gold); font-size:13px; margin-top:14px;">Opening WhatsApp with your enquiry — Moses will be in touch shortly!</p>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-copy">© 2025 Moses Tours & Travel. All rights reserved. Malindi, Kenya.</p>
+  <ul class="footer-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</footer>
+
+<!-- WA STICKY -->
+<div class="wa-sticky">
+  <div class="wa-bubble">Book your safari in seconds!</div>
+  <a href="https://wa.me/254716782031?text=Hello%2C%20I'd%20like%20to%20plan%20a%20trip%20with%20Moses%20Tours." class="wa-btn" target="_blank" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.137.565 4.147 1.558 5.889L.053 23.394l5.697-1.493A11.937 11.937 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.804 9.804 0 01-5.012-1.374l-.36-.213-3.381.887.902-3.293-.233-.379A9.775 9.775 0 012.182 12c0-5.419 4.4-9.818 9.818-9.818 5.419 0 9.818 4.399 9.818 9.818 0 5.419-4.399 9.818-9.818 9.818z"/></svg>
+  </a>
+</div>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const name    = form.querySelector('input[type="text"]').value.trim();
+    const email   = form.querySelector('input[type="email"]').value.trim();
+    const service = form.querySelector('select').value;
+    const date    = form.querySelector('input[type="date"]').value;
+    const message = form.querySelector('textarea').value.trim();
+
+    const text = [
+      `Hello Moses Tours! I'd like to make an enquiry.`,
+      ``,
+      `*Name:* ${name}`,
+      `*Email:* ${email}`,
+      `*Service:* ${service}`,
+      date ? `*Travel Date:* ${date}` : '',
+      message ? `*Message:* ${message}` : ''
+    ].filter(Boolean).join('\n');
+
+    const waURL = `https://wa.me/254716782031?text=${encodeURIComponent(text)}`;
+    window.open(waURL, '_blank');
+
+    document.getElementById('form-success').style.display = 'block';
+    form.reset();
+  }
+</script>
+</body>
+</html>
